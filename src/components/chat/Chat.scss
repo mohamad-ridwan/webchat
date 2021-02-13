@@ -1,0 +1,43 @@
+.column-isi-chat{
+    display: flex;
+    height: auto;
+    width: 100%;
+    padding: 10px 40px;
+    z-index: 11;
+    align-items: flex-end;
+
+    .img-user-chat{
+        display: flex;
+        height: 40px;
+        width: 40px;
+        border-radius: 500px;
+        object-fit: cover;
+        object-position: center;
+        cursor: pointer;
+    }
+
+    .column-isi-chat-user{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        width: auto;
+        max-width: 500px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: start;
+        margin-left: 10px;
+
+        .name-chat-user{
+            display: flex;
+            font-size: 12pt;
+            font-weight: bold;
+        }
+
+        .pesan-user{
+            display: flex;
+            font-size: 10pt;
+            margin-top: 0px;
+        }
+    }
+}
