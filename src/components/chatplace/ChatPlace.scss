@@ -1,0 +1,171 @@
+@import '../../utils/variable.scss';
+
+.kolom-kanan{
+    display: none;
+    flex-direction: column-reverse;
+    position: relative;
+    height: 100%;
+    width: 65%;
+    background-color: transparent;
+    overflow-y: scroll;
+    padding-bottom: 60px;
+    background-size: cover;
+    background-position: center;
+    // z-index: 9999;
+   
+    .wrapp-chat{
+        display: flex;
+        flex-direction: column-reverse;
+        position: absolute;
+        height: auto;
+        width: 100%;
+        overflow: hidden;
+        padding-top: 60px;
+    }
+
+    .nav-profil-group-chat{
+        display: flex;
+        position: fixed;
+        top: 0px;
+        height: 60px;
+        width: 65%;
+        background-color: #fff;
+        padding: 10px 20px;
+        align-items: center;
+        overflow: hidden;
+        z-index: 9999;
+        cursor: pointer;
+        justify-content: space-between;
+
+        // .img-profil-group-chat{
+        //     display: flex;
+        //     height: 40px;
+        //     width: 40px;
+        //     border-radius: 500px;
+        //     object-fit: cover;
+        //     object-position: center;
+        //     margin-right: 10px;
+        //     cursor: pointer;
+        // }
+
+        .icon-search-message-user{
+            display: flex;
+            font-size: 18pt;
+            color: #aaa;
+        }
+
+        .column-name-profil-group-chat{
+            display: flex;
+            flex-direction: column;
+
+            .name-profil-group-chat{
+                display: flex;
+                font-size: 11pt;
+                font-weight: 500;
+            }
+
+            .total-members{
+                display: flex;
+                font-size: 10pt;
+                color: #777;
+            }
+        }
+
+    }
+
+    .form-input-chat{
+        display: flex;
+        position: fixed;
+        bottom: 0px;
+        height: 60px;
+        width: 65%;
+        padding: 10px 10px;
+        background-color: #fff;
+        z-index: 9999;
+
+        .input-user-chat{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            font-size: 11pt;
+            padding: 10px 20px;
+            // border-radius: 50px;
+            border: none;
+            outline: none;
+            background-color: #fff;
+        }
+        .input-user-chat::placeholder{
+            font-size: 11pt;
+            color: #aaa;
+        }
+    }
+
+    .column-reply-chat{
+        display: none;
+        position: fixed;
+        bottom: 60px;
+        height: 45px;
+        width: 65%;
+        padding: 10px 10px;
+        background-color: #fff;
+        box-shadow: 0 -1px 3px -1px rgba(0,0,0,0.2);
+        align-items: center;
+        overflow: hidden;
+        z-index: 99;
+
+        .iconReplyChat{
+            display: flex;
+            font-size: 20pt;
+            color: $colorLima;
+        }
+
+        .column-name-reply-chat{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            justify-content: space-between;
+            width: 100%;
+            justify-content: center;
+            padding-left: 10px;
+
+            .name-reply{
+                display: flex;
+                font-size: 11pt;
+                font-weight: 500;
+                color: $colorEmpat;
+            }
+
+            .pesan-reply{
+                display: flex;
+                font-size: 10pt;
+            }
+
+            .btn-close-reply{
+                display: flex;
+                position: absolute;
+                font-size: 17pt;
+                color: #aaa;
+                right: 20px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                background-color: transparent;
+            }
+        }
+    }
+
+    .display-join-group{
+        display: flex;
+        position: fixed;
+        height: 60px;
+        width: 60%;
+        bottom: 0;
+        font-weight: 500;
+        color: blue;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        z-index: 999999;
+        cursor: pointer;
+    }
+}

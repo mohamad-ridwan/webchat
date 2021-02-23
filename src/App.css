@@ -14,8 +14,8 @@ html{
 }
 
 body{
+  /* position: relative; */
   background-color: #888;
-  padding: 20px 150px;
 }
 
 .App-logo {

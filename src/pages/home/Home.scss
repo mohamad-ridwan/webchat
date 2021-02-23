@@ -1,5 +1,8 @@
+@import '../../utils/variable.scss';
+
 .wrapp-home{
     display: flex;
+    // position: relative;
     height: 100vh;
     width: 100%;
     background-color: #fff;
@@ -8,155 +11,121 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-        width: 40%;
-        background-color: #eee;
-        border-right: 1px solid #bbb;
+        width: 35%;
+        background-color: #fff;
+        border-right: 1px solid #ddd;
 
         .nav-profile{
             display: flex;
+            height: 60px;
+            width: 100%;
+            padding: 0px 20px;
+            align-items: center;
+
+            .btn-menu-nav{
+                display: flex;
+                font-size: 18pt;
+                color : $colorSatu;
+                cursor: pointer;
+            }
+
+            .form-input-search{
+                display: flex;
+                height: auto;
+                width: 95%;
+                margin-left: 20px;
+                border-radius: 3px;
+
+                .input-search{
+                    display: flex;
+                    height: 35px;
+                    width: 100%;
+                    background-color: #eee;
+                    border: none;
+                    outline: none;
+                    padding: 0 10px;
+                    font-size: 10pt;
+                    transition: 0.3s ease-in-out;
+                    border-radius: 3px;
+                }
+            }
+        }
+
+        .wrapp-place-user-signin{
+            display: flex;
             height: auto;
             width: 100%;
-            padding: 20px;
-            border-bottom: 1px solid #aaa;
-            align-items: center;
-
-            .img-nav-profile{
-                display: flex;
-                height: 40px;
-                width: 40px;
-                border-radius: 500px;
-                object-fit: cover;
-                object-position: center;
-                cursor: pointer;
-            }
-
-            .name-nav-profile{
-                display: flex;
-                font-size: 12pt;
-                font-weight: bold;
-                margin-left: 10px;
-            }
-        }
-
-        .group-chat{
-            display: flex;
-            height: 70px;
-            width: 100%;
-            padding: 10px 20px;
-            background-color: #fff;
+            padding: 20px 30px;
             align-items: center;
             cursor: pointer;
+            background-color: $colorLima;
 
-            .img-group-chat{
+            .img-place-user-signin{
                 display: flex;
                 height: 40px;
                 width: 40px;
+                border-radius: 500px;
                 object-fit: cover;
                 object-position: center;
-                border-radius: 500px;
-                margin-right: 10px;
+                margin: 0 -10px;
             }
 
-            .column-name-group{
+            .column-kanan-place-user-signin{
                 display: flex;
                 flex-direction: column;
+                padding-left: 20px;
 
-                .name-group-chat{
+                .box-name-place{
                     display: flex;
-                    font-size: 12pt;
                 }
-
-                .pesan-masuk{
+    
+                .name-place-user-signin{
                     display: flex;
-                    font-size: 10pt;
-                    margin-top: 5px;
+                    font-size: 11pt;
+                    font-weight: 500;
+                    margin-left: 5px;
+                    color: #fff;
+                }
+    
+                .box-txt-lainnya{
+                    display: flex;
+                    flex-direction: column;
+                    margin: 5px 0 0 5px;
+                    
+                    .lainnya{
+                        display: flex;
+                        font-size: 11pt;
+                        color: #fff;
+                        text-align: start;
+                    }
+
+                    .lihat-dan-cari{
+                        display: flex;
+                        margin-top: 20px;
+                        font-size: 11pt;
+                        color: #fff;
+                    }
                 }
             }
+
+            
         }
     }
 
-    .kolom-kanan{
+    // Tampilan awal
+    .tampilan-home{
         display: flex;
-        flex-direction: column-reverse;
-        position: relative;
-        height: 100%;
-        max-height: auto;
-        width: 60%;
-        background-color: silver;
-        overflow-y: auto;
+        flex-direction: column;
+        height: 100vh;
+        width: 65%;
+        justify-content: center;
+        align-items: center;
 
-        .img-background-chat{
+        .wellcome-home{
             display: flex;
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .nav-profil-group-chat{
-            display: flex;
-            position: absolute;
-            top: 0;
-            height: 60px;
-            width: 100%;
-            background-color: #eee;
-            padding: 10px 20px;
-            align-items: center;
-            overflow: hidden;
-
-            .img-profil-group-chat{
-                display: flex;
-                height: 40px;
-                width: 40px;
-                border-radius: 500px;
-                object-fit: cover;
-                object-position: center;
-                margin-right: 10px;
-                cursor: pointer;
-            }
-
-            .column-name-profil-group-chat{
-                display: flex;
-                flex-direction: column;
-
-                .name-profil-group-chat{
-                    display: flex;
-                    font-size: 12pt;
-                }
-
-                .total-members{
-                    display: flex;
-                    font-size: 10pt;
-                    color: #777;
-                }
-            }
-
-        }
-
-        .form-input-chat{
-            display: flex;
-            height: 60px;
-            width: 100%;
-            padding: 10px 40px;
-            background-color: #eee;
-            z-index: 1;
-
-            .input-user-chat{
-                display: flex;
-                height: 100%;
-                width: 100%;
-                font-size: 11pt;
-                padding: 10px 20px;
-                border-radius: 50px;
-                border: none;
-                outline: none;
-                background-color: #fff;
-            }
-            .input-user-chat::placeholder{
-                font-size: 11pt;
-                color: #aaa;
-            }
+            font-size: 14pt;
+            font-weight: 500;
         }
     }
+    // end tampilan awal
 }

@@ -1,0 +1,75 @@
+@import '../../utils/variable.scss';
+
+.wrapp-result-search{
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    height: 90vh;
+    width: 35%;
+    left: 0;
+    top: 60px;
+    z-index: 999999999;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+
+    .wrapp-scroll-result-search{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 100%;
+        width: 100%;
+
+        .column-scroll-result-search{
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            height: auto;
+            width: 100%;
+
+            .contact-result-search{
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                width: 100%;
+        
+                .total-found-contact{
+                    display: flex;
+                    font-size: 11pt;
+                    font-weight: 500;
+                    width: 100%;
+                    background-color: #eee;
+                    color: #999;
+                    padding: 10px 20px;
+                }
+        
+                .box-card-contact{
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        
+            .found-message-after-result-search{
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                width: 100%;
+        
+                .total-found-result-message{
+                    display: flex;
+                    font-size: 11pt;
+                    background-color: #eee;
+                    font-weight: 500;
+                    color: #999;
+                    padding: 10px 20px;
+                }
+        
+                .box-card-result-message{
+                    display: flex;
+                    flex-direction: column;
+                    height: auto;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

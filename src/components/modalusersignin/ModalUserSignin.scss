@@ -1,0 +1,212 @@
+@import '../../utils/variable.scss';
+
+.wrapp-modal-user-signin{
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999912;
+
+    .box-white-modal-user-signin{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 80vh;
+        width: 350px;
+        background-color: #fff;
+        border-radius: 5px;
+
+        .column-atas-modal-user-signin{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 20px 20px 10px 20px;
+            border-bottom: 1px solid #ddd;
+            overflow: hidden;
+            // align-items: center;
+
+            .total-joined-signin{
+                display: flex;
+                height: auto;
+                width: 100%;
+                font-weight: 500;
+                overflow: hidden;
+                padding-bottom: 10px;
+            }
+
+            .txt-pilih{
+                display: flex;
+                font-size: 11pt;
+                overflow: hidden;
+                margin-top: 20px;
+                padding: 0 0 10px 0;
+            }
+
+            .column-search-userSignin{
+                display: flex;
+                height: 40px;
+                width: 100%;
+                overflow: hidden;
+                margin-top: 20px;
+
+                .icon-search-userSignin{
+                    display: flex;
+                    font-size: 15pt;
+                    color: #aaa;
+                    transform: rotate(90deg);
+                    cursor: default;
+                    overflow: hidden;
+                }
+
+                .search-userSignin{
+                    display: flex;
+                    height: auto;
+                    width: 100%;
+                    padding: 0 10px;
+                    border: none;
+                    outline: none;
+                    background-color: transparent;
+                }
+                .search-userSignin::placeholder{
+                    font-size: 10pt;
+                    color: #aaa;
+                }
+            }
+        }
+
+        .column-place-card-user-joined{
+            display: flex;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            
+            .column-scroll-card-user{
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                height: auto;
+                width: 100%;
+                overflow-y: auto;
+
+                .not-found-search{
+                    display: flex;
+                    font-size: 11pt;
+                    justify-content: center;
+                    margin-top: 20px;
+                    font-weight: 500;
+                    color: $colorEmpat;
+                }
+            }
+        }
+
+        .column-btn-modal-user-signin{
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            padding: 10px 20px;
+            border-top: 1px solid #ddd;
+
+            .btn-close-modal-user-signin{
+                display: flex;
+                font-size: 10pt;
+                font-weight: bold;
+                color: $colorTiga;
+                border-radius: 5px;
+                border: none;
+                outline: none;
+                background-color: transparent;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                overflow: hidden;
+                cursor: pointer;
+                transition: 0.3s ease-in-out;
+                &:hover{
+                    background-color: #dee;
+                }
+            }
+        }
+    }
+
+    .wrapp-start-pesan{
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        height: 80vh;
+        width: 350px;
+        z-index: 9999999999;
+        background-color: #fff;
+        border-radius: 5px;
+
+        .nav-start-pesan{
+            display: flex;
+            width: 100%;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            align-items: center;
+            overflow: hidden;
+
+            .iconBack{
+                display: flex;
+                font-size: 20pt;
+                cursor: pointer;
+                color: #aaa;
+            }
+
+            .img-profile-start-pesan{
+                display: flex;
+                height: 35px;
+                width: 35px;
+                border-radius: 500px;
+                object-fit: cover;
+                object-position: center;
+                margin-left: 15px;
+                cursor: pointer;
+            }
+
+            .name-profile-start-pesan{
+                display: flex;
+                font-size: 12pt;
+                font-weight: 500;
+                margin-left: 10px;
+            }
+        }
+
+        .body-start-pesan{
+            display: flex;
+            flex-direction: column-reverse;
+            height: 100%;
+            width: 100%;
+
+            .form-input-start-pesan{
+                display: flex;
+                position: relative;
+                height: 60px;
+                width: 100%;
+                padding: 10px 20px;
+                border-top: 1px solid #ddd;
+                align-items: center;
+
+                .input-start-pesan{
+                    display: flex;
+                    height: auto;
+                    width: 100%;
+                    border: none;
+                    outline: none;
+                    padding-right: 10px;
+                }
+
+                .iconSend{
+                    display: flex;
+                    font-size: 20pt;
+                    cursor: pointer;
+                    color: $colorLima;
+                }
+            }
+        }
+    }
+}

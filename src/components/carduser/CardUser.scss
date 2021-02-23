@@ -1,0 +1,69 @@
+@import '../../utils/variable.scss';
+
+.group-chat{
+    display: flex;
+    position: relative;
+    height: 70px;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #fff;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.1s ease-out;
+    &:hover{
+        background-color: #eee;
+    }
+    &:active{
+        background-color: $colorTiga;
+    }
+
+    .img-group-chat{
+        display: flex;
+        height: 40px;
+        width: 40px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 500px;
+        margin-right: 15px;
+    }
+
+    .column-name-group{
+        display: flex;
+        flex-direction: column;
+
+        .name-group-chat{
+            display: flex;
+            font-size: 12pt;
+            align-items: center;
+
+            .iconGroup{
+                display: none;
+                font-size: 13pt;
+                margin-right: 5px;
+                margin-top: 3px;
+            }
+        }
+
+        .pesan-masuk{
+            display: flex;
+            font-size: 10pt;
+            margin-top: 5px;
+            color: #999;
+            // font-weight: 500;
+
+            .name-pesan-masuk{
+                display: flex;
+                color: $colorEmpat;
+                margin-right: 5px;
+            }
+        }
+
+        .date-pesan-masuk{
+            display: flex;
+            position: absolute;
+            font-size: 10pt;
+            color: #aaa;
+            right: 20px;
+        }
+    }
+}

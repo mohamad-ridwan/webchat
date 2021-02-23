@@ -1,15 +1,17 @@
+@import '../../utils/variable.scss';
+
 .column-isi-chat{
     display: flex;
     height: auto;
     width: 100%;
-    padding: 10px 40px;
+    padding: 10px 20px;
     z-index: 11;
     align-items: flex-end;
 
     .img-user-chat{
         display: flex;
-        height: 40px;
-        width: 40px;
+        height: 35px;
+        width: 35px;
         border-radius: 500px;
         object-fit: cover;
         object-position: center;
@@ -19,25 +21,71 @@
     .column-isi-chat-user{
         display: flex;
         flex-direction: column;
+        position: relative;
         height: auto;
         width: auto;
         max-width: 500px;
         background-color: #fff;
         border-radius: 10px;
-        padding: 15px;
+        padding: 15px 50px 25px 15px;
         text-align: start;
         margin-left: 10px;
 
         .name-chat-user{
             display: flex;
-            font-size: 12pt;
-            font-weight: bold;
+            font-size: 11pt;
+            font-weight: 500;
+        }
+
+        .column-pesan-reply-user{
+            display: flex;
+            height: auto;
+            flex-direction: column;
+            border-left: 2px solid $colorEmpat;
+            padding-left: 7px;
+            margin-bottom: 5px;
+            justify-content: center;
+            cursor: pointer;
+
+            .name-user-reply{
+                display: flex;
+                font-size: 10pt;
+                font-weight: 500;
+                color: $colorEmpat;
+            }
+
+            .isi-reply-user{
+                display: flex;
+                font-size: 10pt;
+            }
         }
 
         .pesan-user{
             display: flex;
             font-size: 10pt;
             margin-top: 0px;
+        }
+        .date-pesan{
+            display: flex;
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+            font-size: 10pt;
+            color: #aaa;
+        }
+
+        .iconReply{
+            display: none;
+            position: absolute;
+            font-size: 12pt;
+            color: #aaa;
+            right: 10px;
+            cursor: pointer;
+            top: 5px;
+            transition: 0.3s ease-in-out;
+            &:hover{
+                color: $colorLima;
+            }
         }
     }
 }

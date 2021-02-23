@@ -1,0 +1,39 @@
+.card-info-member-group{
+    display: flex;
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    padding: 0 20px;
+    &:hover{
+        background-color: #eee;
+    }
+
+    .img-info-user-group{
+        display: flex;
+        height: 40px;
+        width: 40px;
+        border-radius: 500px;
+        object-fit: cover;
+        object-position: center;   
+    }
+
+    .column-name-info-user-group{
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+
+        .name-user-info-group{
+            display: flex;
+            font-size: 11pt;
+            font-weight: 500;
+        }
+
+        .info-join-group{
+            display: flex;
+            font-size: 10pt;
+            color: blue;
+        }
+    }
+}
