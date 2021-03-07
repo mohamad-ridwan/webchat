@@ -1,0 +1,172 @@
+@import '../../utils/variable.scss';
+
+.wrapp-carousel{
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 9999999999999999;
+    // background-color: brown;
+
+    .icon-back-left{
+        display: flex;
+        position: absolute;
+        font-size: 18pt;
+        color: #fff;
+        left: 40px;
+        top: 20px;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .icon-close-carousel{
+        display: flex;
+        position: absolute;
+        font-size: 18pt;
+        color: #fff;
+        right: 40px;
+        top: 20px;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .container-slide-carousel{
+        display: flex;
+        position: relative;
+        height: auto;
+        width: 100%;
+        background-color: #000;
+
+        .bar-progress{
+            display: flex;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            justify-content: center;
+            z-index: 11;
+
+            .wrapp-border-progress{
+                display: flex;
+                width: 350px;
+
+                .border-progress{
+                    display: flex;
+                    height: 6px;
+                    width: 100%;
+                    background-color: rgba(255, 255, 255, 0.322);
+                    border-radius: 20px;
+                    margin: 0 3px;
+                    cursor: default;
+
+                    .white-bar-progress{
+                        display: flex;
+                        height: 100%;
+                        width: 0px;
+                        background-color: #fff;
+                        transition: width 3s ease-out;
+                    }
+
+                    .active{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .column-bar-progress{
+            display: none;
+            flex-direction: column;
+            position: relative;
+            height: auto;
+            width: 100%;
+            // margin: 10px auto;
+    
+            .column-content-status{
+                display: flex;
+                height: auto;
+                width: 500px;
+                margin: auto;
+                justify-content: center;
+                
+                .name-status{
+                    display: flex;
+                    position: absolute;
+                    font-size: 10pt;
+                    color: #fff;
+                    top: 40px;
+                }
+
+                .time-create-status{
+                    display: flex;
+                    position: absolute;
+                    top: 60px;
+                    font-size: 9pt;
+                    color: #fff;
+                }
+        
+                .info-content-status{
+                    display: flex;
+                    font-size: 25pt;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .fade{
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 500ms;
+        animation-name: fade;
+        animation-duration: 500ms;
+    }
+
+    .column-btn-prev{
+        display: flex;
+        position: absolute;
+        left: 40px;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .icon-prev{
+            display: flex;
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 500px;
+            color: #fff;
+            font-size: 18pt;
+        }
+    }
+    .column-btn-next{
+        display: flex;
+        position: absolute;
+        right: 40px;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .icon-next{
+            display: flex;
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 500px;
+            color: #fff;
+            font-size: 18pt;
+        }
+    }   
+}
+
+@-webkit-keyframes fade{
+    from {opacity: .4;}
+    to {opacity: 1;}
+}
+
+@keyframes fade{
+    from {opacity: .4;}
+    to {opacity: 1;}
+}

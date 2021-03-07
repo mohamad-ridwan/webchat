@@ -1,0 +1,292 @@
+@import '../../utils/variable.scss';
+
+.wrapp-status{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px 150px;
+    background-color: #000;
+    z-index: 9999;
+
+    .modal-ketik-status{
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99999999;
+        justify-content: center;
+        align-items: center;
+        background-color: burlywood;
+
+        .form-input-ketik-status{
+            display: flex;
+            height: auto;
+            width: auto;
+
+            .input-ketik-status{
+                display: flex;
+                height: 50px;
+                width: auto;
+                font-size: 20pt;
+                color: #fff;
+                background-color: transparent;
+                outline: none;
+                border: none;
+                text-align: center;
+            }
+            .input-ketik-status::placeholder{
+                color: #fff;
+                opacity: 0.7;
+            }
+        }
+
+        .icon-close-ketik-status{
+            display: flex;
+            position: absolute;
+            font-size: 18pt;
+            color: #fff;
+            right: 150px;
+            top: 60px;
+            cursor: pointer;
+        }
+
+        .label-bawah-status{
+            display: flex;
+            position: absolute;
+            padding: 10px 20px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+
+            .icon-right-status{
+                display: flex;
+                font-size: 18pt;
+                color: #fff;
+            }
+            .status-khusus{
+                display: flex;
+                font-size: 12pt;
+                color: #fff;
+            }
+        }
+
+        .icon-paint{
+            display: flex;
+            position: absolute;
+            bottom: 100px;
+            right: 150px;
+            color: #fff;
+            font-size: 18pt;
+            cursor: pointer;
+            padding: 2px;
+        }
+    }
+
+    .kolom-kiri-status{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 30%;
+        background-color: #111;
+        border-radius: 3px;
+
+        .nav-update-status{
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            .column-btn-update-status{
+                display: flex;
+                justify-content: flex-end;
+                position: relative;
+                padding: 10px 15px;
+                align-items: center;
+                overflow: hidden;
+    
+                .txt-update-status{
+                    display: flex;
+                    position: absolute;
+                    left: 15px;
+                    font-size: 10pt;
+                    color: #fff;
+                }
+    
+                .btn-update-status-txt{
+                    display: flex;
+                    font-size: 13pt;
+                    color: #fff;
+                    padding: 10px;
+                    border-radius: 500px;
+                    background-color: #333;
+                    cursor: pointer;
+                    margin-right: 10px;
+                }
+    
+                .btn-update-status-img{
+                    display: flex;
+                    font-size: 13pt;
+                    color: #fff;
+                    padding: 10px;
+                    border-radius: 500px;
+                    background-color: $colorLima;
+                    cursor: pointer;
+                }
+            }
+    
+            .column-status-saya{
+                display: flex;
+                height: auto;
+                width: auto;
+                margin: 0 15px;
+                overflow: hidden;
+                // padding-bottom: 5px;
+                // border-bottom: 1px solid #555;
+            }
+        }
+
+        .column-scroll-status-user{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            height: 80%;
+            width: auto;
+            margin: 0 0 0 15px;
+
+            .column-card-status-user{
+                display: flex;
+                position: absolute;
+                flex-direction: column;
+                height: auto;
+                width: 100%;
+
+                .txt-terbaru{
+                    display: flex;
+                    font-size: 9pt;
+                    color: #aaa;
+                    width: auto;
+                    margin-right: 15px;
+                    border-top: 1px solid #555;
+                    padding: 5px 0;
+                }
+            }
+        }
+
+        .column-scroll-status-user::-webkit-scrollbar{
+            width: 5px;
+        }
+        .column-scroll-status-user::-webkit-scrollbar-track{
+            background-color: transparent;
+        }
+        .column-scroll-status-user::-webkit-scrollbar-thumb{ 
+            border: 3px solid #444;
+        }
+    }
+
+    .kolom-kanan-status{
+        display: none;
+        flex-direction: column;
+        position: relative;
+        height: 100%;
+        width: 70%;
+        background-color: transparent;
+        justify-content: center;
+        align-items: center;
+
+        .icon-close-status{
+            display: flex;
+            position: absolute;
+            font-size: 18pt;
+            right: 0;
+            top: 15px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .icon-circle-status{
+            display: flex;
+            font-size: 70pt;
+            color: #777;
+            align-items: center;
+        }
+        .pembaruan-status{
+            display: flex;
+            font-size: 11pt;
+            color: #999;
+            margin-top: 30px;
+        }
+    }
+
+    .kolom-kanan-view-status{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 100%;
+        width: 70%;
+        background-color: transparent;
+        justify-content: center;
+        align-items: center;
+
+        .icon-close-status2{
+            display: flex;
+            position: absolute;
+            font-size: 18pt;
+            right: 0;
+            top: 15px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .lihat-pembaruan-anda{
+            display: flex;
+            font-size: 16pt;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .column-card-img-status{
+            display: flex;
+            margin-top: 40px;
+
+            .card-img-status{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 0 10px;
+
+                .circle-status{
+                    display: flex;
+                    height: 70px;
+                    width: 70px;
+                    border-radius: 500px;
+                    // margin: 0 10px;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: burlywood;
+                    cursor: pointer;
+                    overflow: hidden;
+    
+                    .contents-status{
+                        display: flex;
+                        font-size: 9pt;
+                        color: #fff;
+                    }
+                }
+                .time-pembaruan-status{
+                    display: flex;
+                    font-size: 9pt;
+                    color: #999;
+                    margin-top: 20px;
+                }
+            }
+        }
+        
+    }
+}

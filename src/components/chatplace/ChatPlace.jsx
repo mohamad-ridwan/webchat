@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import API from '../../services'
+import { NotifikasiContext } from '../../services/context/notifikasi/notifikasi'
 import Chat from '../chat/Chat'
 import './ChatPlace.scss'
 
@@ -6,14 +8,30 @@ const ChatPlace = ({ displayChat, background, imgProfile, clickImg, nameProfile,
 
     const [showReply, setShowReply] = useState(false)
 
+    const userId = JSON.parse(localStorage.getItem('userId'))
+    const id = userId && userId._id
+
+    const [amountNotif, setAmountNotif, getDataNotif] = useContext(NotifikasiContext)
+
+    function toShowMessageReply(_id) {
+        const columnIsiChat = document.getElementById(_id)
+
+        if (columnIsiChat) {
+            columnIsiChat.style.backgroundColor = '#37afe283'
+
+            setTimeout(() => {
+                columnIsiChat.style.backgroundColor = 'transparent'
+            }, 500);
+        }
+    }
+
     return (
         <>
             <div className="kolom-kanan" style={{
                 display: `${displayChat}`,
                 backgroundImage: `url(${background})`,
-                paddingBottom: `${showReply ? '105px' : '60px'}`
+                paddingBottom: `${showReply ? '110px' : '55px'}`
             }}>
-
                 <div className="nav-profil-group-chat" onClick={clickBarProfile}>
                     <div className="column-name-profil-group-chat">
                         <p className="name-profil-group-chat">
@@ -98,12 +116,20 @@ const ChatPlace = ({ displayChat, background, imgProfile, clickImg, nameProfile,
                             return (
                                 <Chat
                                     key={i}
+                                    _idMessage={e._id}
                                     imgUser={`${e.imageUrl}`}
                                     // nameUser={e.name}
                                     nameUserReply={e.nameReply}
                                     isiReply={e.reply}
                                     pesanUser={e.pesan}
                                     date={e.date}
+                                    colorNameUserReply={e.idUser === id ? '#6d9b2d' : '#0088cc'}
+                                    borderLeftColumnPesan={e.idUser === id ? '2px solid #6d9b2d' : '2px solid #0088cc'}
+                                    bgColorIsiChat={e.idUser === id ? '#f0fddd' : '#fff'}
+                                    colorDatePesan={e.idUser === id ? '#6d9b2d' : '#aaa'}
+                                    clickMessageReplyUser={() => {
+                                        toShowMessageReply(e._idReply)
+                                    }}
                                     clickImg={() => {
                                         clickImgProfile(e.idUser)
                                     }}
@@ -116,6 +142,19 @@ const ChatPlace = ({ displayChat, background, imgProfile, clickImg, nameProfile,
                         }) : (
                             <div></div>
                         )}
+
+                    {amountNotif.length > 0 && amountNotif[0].idUser === id ? (
+                        <div className="column-notif-chat" style={{
+                            display: `${amountNotif.length > 0 ? 'flex' : 'none'}`
+                        }}>
+                            <p className="pesan-belum-terbaca">
+                                {amountNotif.length > 0 ? `${amountNotif.length} Pesan yang belum dibaca` : ''}
+                            </p>
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
+
                     {/* END For chat end to end user */}
 
                     {/* For Chatt end to end user */}

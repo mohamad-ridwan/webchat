@@ -6,15 +6,15 @@
     height: 70px;
     width: 100%;
     padding: 10px 20px;
-    background-color: #fff;
+    // background-color: transparent;
+    // color: #000;
     align-items: center;
     cursor: pointer;
-    transition: 0.1s ease-out;
+    // transition: 0.1s ease-out;
+
     &:hover{
-        background-color: #eee;
-    }
-    &:active{
-        background-color: $colorTiga;
+        background-color: $colorLima;
+        color: #fff;
     }
 
     .img-group-chat{
@@ -25,6 +25,7 @@
         object-position: center;
         border-radius: 500px;
         margin-right: 15px;
+        // box-sizing: content-box;
     }
 
     .column-name-group{
@@ -33,7 +34,8 @@
 
         .name-group-chat{
             display: flex;
-            font-size: 12pt;
+            font-size: 11pt;
+            font-weight: 500;
             align-items: center;
 
             .iconGroup{
@@ -66,4 +68,12 @@
             right: 20px;
         }
     }
+}
+
+.activeBG{
+    background-color: $colorLima;
+}
+
+.activeNamePesanMasuk{
+    color: $colorEmpat;
 }

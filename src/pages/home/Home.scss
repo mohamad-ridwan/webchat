@@ -31,10 +31,12 @@
 
             .form-input-search{
                 display: flex;
+                position: relative;
                 height: auto;
                 width: 95%;
                 margin-left: 20px;
                 border-radius: 3px;
+                align-items: center;
 
                 .input-search{
                     display: flex;
@@ -48,6 +50,24 @@
                     transition: 0.3s ease-in-out;
                     border-radius: 3px;
                 }
+
+                .icon-close-search{
+                    display: none;
+                    position: absolute;
+                    font-size: 15pt;
+                    color: #aaa;
+                    right: 5px;
+                    cursor: pointer;
+                }
+            }
+
+            .circle-icon-status{
+                display: flex;
+                font-size: 18pt;
+                cursor: pointer;
+                color: #aaa;
+                padding: 2px;
+                margin-left: 13px;
             }
         }
 
