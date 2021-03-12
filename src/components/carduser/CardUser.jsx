@@ -1,11 +1,11 @@
 import React from 'react'
 import './CardUser.scss'
 
-const CardUser = ({ clickCard, img, nameCard, pesanMasuk, datePesan, displayIcon, namePesan, displayNamePesan, wrapBgColor, colorName, colorDate, wrappPadding, fontPesanMasuk, marginNamePesanMasuk, borderImg, idGroupChat }) => {
+const CardUser = ({ clickCard, img, nameCard, pesanMasuk, datePesan, displayIcon, namePesan, displayNamePesan, wrapBgColor, colorName, colorDate, wrappPadding, fontPesanMasuk, marginNamePesanMasuk, borderImg, idGroupChat, nameCardHome, idPesan }) => {
 
     return (
         <>
-            <div className="group-chat" id={idGroupChat} onClick={clickCard} style={{
+            <div className={`group-chat ${nameCardHome}wrapper`} id={`${idGroupChat}`} onClick={clickCard} style={{
                 backgroundColor: `${wrapBgColor}`,
                 padding: `${wrappPadding}`,
             }}>
@@ -22,10 +22,10 @@ const CardUser = ({ clickCard, img, nameCard, pesanMasuk, datePesan, displayIcon
                             group
                     </span> {nameCard}
                     </p>
-                    <p className="pesan-masuk" id={`${idGroupChat}pesanMasuk`} style={{
+                    <p className={`pesan-masuk ${idPesan}`} id={`pesanMasuk`} style={{
                         fontSize: `${fontPesanMasuk}`,
                     }}>
-                        <p className="name-pesan-masuk" id={`${idGroupChat}namePesanMasuk`} style={{
+                        <p className={`name-pesan-masuk ${idPesan}`} id={`namePesanMasuk`} style={{
                             display: `${displayNamePesan}`,
                             margin: `${marginNamePesanMasuk}`
                         }}>

@@ -23,10 +23,10 @@ import avatar from '../../images/avatar.jpg'
 
 const Home = () => {
 
-    const [dataStatus, setDataStatus, dataRoom, setDataRoom] = useContext(StatusContext)
+    const [dataStatus, setDataStatus, dataRoom, setDataRoom, statusUserSignin, setStatusUserSignin, allDataStatus, setAllDataStatus, updatingStatus] = useContext(StatusContext)
     const [dataRoomChat, setDataRoomChat, dataProfileUserChat, setDataProfileUserChat, clickCardUser] = useContext(DataRoomChatContext)
     const [userSigninGlobal, setUserSigninGlobal] = useContext(DataUserSiginContext)
-    const [valueSearchHome, setValueSearchHome, roomChatUser, setRoomChatUser, userLogin, setUserLogin, filterSearch, filterMessage, semuaAPI] = useContext(ResultSearchUserContext)
+    const [valueSearchHome, setValueSearchHome, roomChatUser, setRoomChatUser, userLogin, setUserLogin, filterSearch, filterMessage, semuaAPI, toShowMessageReply, conditionShowMessage, setConditionShowMessage, changeBgResultSearch] = useContext(ResultSearchUserContext)
     const [amountNotif, setAmountNotif, getDataNotif, dataUserForNotif, setDataUserForNotif, getDataUserForNotif] = useContext(NotifikasiContext)
     const [showInfoProfileUser, setShowInfoProfileUser] = useState(false)
     const [userSignin, setUserSignin] = useState({})
@@ -58,6 +58,7 @@ const Home = () => {
     const [isSubmitSendMessage, setIsSubmitSendMessage] = useState(false)
     const [colorSearchHome, setColorSearchHome] = useState(false)
     const [showModalStatus, setShowModalStatus]= useState(false)
+    const [idUpdateRoomChat, setIdUpdateRoomChat] = useState('')
 
     const [valueReply, setValueReply] = useState({
         _idReply: '',
@@ -95,6 +96,7 @@ const Home = () => {
                 if (!res.data) {
                     history.push('/sign-in')
                 }
+                setUserLogin(res.data)
                 setUserSignin(res.data)
                 dataUser = res.data
             }, (err) => {
@@ -256,6 +258,7 @@ const Home = () => {
                 const respons = res.data
                 const filterIdRoom = respons.filter(i => i.idRoom === id)
                 setGetUserToChatt(filterIdRoom)
+                setGetUserToChatt(data => data, getUserToChatt)
             })
         setDisplayChatToUser(true)
         setDisplayChat(false)
@@ -277,6 +280,10 @@ const Home = () => {
         const hour = new Date().getHours()
         const minutes = new Date().getMinutes()
 
+        const dataIdUser2 = Object.keys(dataRoomChat).length > 0 ? dataRoomChat.data.idUser1 === _id ? dataRoomChat.data.idUser2 : dataRoomChat.data.idUSer1 : dataRoomEndtoend.idUser1 === _id ? dataRoomEndtoend.idUser2 : dataRoomEndtoend.idUser1
+        const dataNameUser2 = Object.keys(dataRoomChat).length > 0 ? dataRoomChat.data.nameUser1 === name ? dataRoomChat.data.nameUser2 : dataRoomChat.data.nameUser1 : dataRoomEndtoend.nameUser1 === name ? dataRoomEndtoend.nameUser2 : dataRoomEndtoend.nameUser1
+        const dataImageUrlUser2 = Object.keys(dataRoomChat).length > 0 ? dataRoomChat.data.imageUrlUser1 === imageUrl ? dataRoomChat.data.imageUrlUser2 : dataRoomChat.data.imageUrlUser1 : dataRoomEndtoend.imageUrlUser1 === imageUrl ? dataRoomEndtoend.imageUrlUser2 : dataRoomEndtoend.imageUrlUser1
+
         const dataPost = {
             googleId: googleId,
             name: name,
@@ -289,7 +296,13 @@ const Home = () => {
             _idReply: valueReply._idReply.length === 0 ? ' ' : valueReply._idReply,
             idUserReply: valueReply.idUserReply.length === 0 ? ' ' : valueReply.idUserReply,
             reply: valueReply.reply.length === 0 ? ' ' : valueReply.reply,
-            nameReply : valueReply.nameReply.length === 0 ? ' ' : valueReply.nameReply
+            nameReply : valueReply.nameReply.length === 0 ? ' ' : valueReply.nameReply,
+            idUser1: _id,
+            idUser2: dataIdUser2,
+            nameUser1: name,
+            nameUser2: dataNameUser2,
+            imageUrlUser1: imageUrl,
+            imageUrlUser2: dataImageUrlUser2
         }
 
         const dataNotif = {
@@ -308,6 +321,7 @@ const Home = () => {
             .then(res => {
                 getDataNotif(dataRoomEndtoend, id);
                 clickUserForChatt(idRoomEndtoend);
+                semuaAPI();
                 return res;
             })
 
@@ -316,7 +330,7 @@ const Home = () => {
             return res;
         })
 
-        const _idRoom = dataRoomChat.data ? dataRoomChat.data._id : dataRoomChat
+        const _idRoom = Object.keys(dataRoomChat).length > 0 ? dataRoomChat.data._id : idUpdateRoomChat
         API.APIPutChattingUser(_idRoom, dataUpdateRoom)
         .then(res=>{
             setAllAPI();
@@ -336,6 +350,7 @@ const Home = () => {
     const handleLogout = () => {
         const confirm = window.confirm('yakin ingin keluar?')
         if (confirm) {
+            setAllDataStatus([])
             localStorage.removeItem('userId')
             setValueSearchHome('')
             history.push('/sign-in')
@@ -357,6 +372,7 @@ const Home = () => {
 
     const { nameUser1, nameUser2, imageUrlUser1, imageUrlUser2 } = dataRoomEndtoend && { ...dataRoomEndtoend }
 
+    // For first user chatting room end to end
     setTimeout(() => {
         if(Object.keys(dataRoomChat).length > 0 && isSubmitSendMessage === true){
             const {idUser1, idUser2} = {...dataRoomChat.data}
@@ -379,16 +395,60 @@ const Home = () => {
     return (
         <>
             <div className="wrapp-home">
-                <ResultSearch/>
+                <ResultSearch
+                    clickCard={(e)=>{
+                        const getIdUser = e.idUser1 === userSignin._id ? e.idUser2 : e.idUser1
+                        clickUserForChatt(e.idRoom)
+                        setIdRoomEndtoend(e.idRoom)
+                        setDataRoomEndtoend(e)
+                        setIdUpdateRoomChat(e._id)
+                        getDataUserForNotif(e.idUser1 === userSignin._id ? e.idUser2 : e.idUser1)
+                        setIdUserInRoomChat(e.idUser1 === userSignin._id ? e.idUser2 : e.idUser1)
+                        getDataNotif(e, id);
+                        clickCardUser('undefined', filterRoomChattingUser.length, getIdUser);
+                        setValueSearchHome('')
+                    }}
+                    clickCardMessage={async (i)=>{
+                        const filterIdRoom = filterRoomChattingUser.filter((x)=> x.idRoom === i.idRoom)
+
+                        function clickToCard(e){
+                            const getIdUser = e[0].idUser1 === userSignin._id ? e[0].idUser2 : e[0].idUser1
+                            clickUserForChatt(e[0].idRoom)
+                            setIdRoomEndtoend(e[0].idRoom)
+                            setDataRoomEndtoend(e[0])
+                            setIdUpdateRoomChat(e[0]._id)
+                            getDataUserForNotif(e[0].idUser1 === userSignin._id ? e[0].idUser2 : e[0].idUser1)
+                            setIdUserInRoomChat(e[0].idUser1 === userSignin._id ? e[0].idUser2 : e[0].idUser1)
+                            getDataNotif(e[0], id);
+                            clickCardUser('undefined', filterRoomChattingUser.length, getIdUser);
+                        }
+                        await clickToCard(filterIdRoom);
+
+                        setTimeout(() => {
+                            const promiseToShowMsg = Promise.resolve(getUserToChatt)
+                            
+                            promiseToShowMsg.then((res=>{
+                                if(res){
+                                    setConditionShowMessage(true);
+                                }
+                            }))
+                        }, 200);
+                    }}
+                />
                 <div className="kolom-kiri">
                     <div className="nav-profile">
                         <span class="material-icons btn-menu-nav" onClick={() => setDisplayWrappModalMenu(true)}>
                             menu
                         </span>
                         <form action="" className="form-input-search">
-                            <input type="text" className="input-search" placeholder={'Search...'}
+                            <input type="text" className="input-search" placeholder={'Search'}
                             value={valueSearchHome}
-                            onChange={(e)=>setValueSearchHome(e.target.value)
+                            onChange={(e)=>{
+                                setValueSearchHome(e.target.value)
+                                if(!e.target.value){
+                                    changeBgResultSearch(null, filterMessage.length)
+                                }
+                            }
                             }
                             onMouseEnter={()=>setColorSearchHome(true)}
                             onMouseLeave={()=>setColorSearchHome(false)}
@@ -401,7 +461,10 @@ const Home = () => {
                             style={{
                                 display: `${valueSearchHome.length > 0 ? 'flex' : 'none'}`
                             }}
-                            onClick={()=>setValueSearchHome('')}
+                            onClick={()=>{
+                                setValueSearchHome('')
+                                changeBgResultSearch(null, filterMessage.length)
+                            }}
                             >
                                 close
                             </span>
@@ -483,7 +546,8 @@ const Home = () => {
                     {/* END Group Chat */}
 
                     {filterRoomChattingUser && filterRoomChattingUser.length > 0 ?
-                        filterRoomChattingUser.map((e, i) => {                            
+                        filterRoomChattingUser.map((e, i) => {
+
                             const splitName = e.currentMessage.split(':')[0]
                             const splitMessage = e.currentMessage.split(':')[1]
 
@@ -494,18 +558,21 @@ const Home = () => {
                                     img={`${e.imageUrlUser1 === userSignin.imageUrl ? e.imageUrlUser2 : e.imageUrlUser1}`}
                                     nameCard={e.nameUser1 === userSignin.name ? e.nameUser2 : e.nameUser1}
                                     pesanMasuk={splitMessage}
+                                    nameCardHome={e.idUser1 === userSignin._id ? e.idUser2 : e.idUser1}
                                     namePesan={splitName === userSignin.name ? `You:` : ''}
                                     marginNamePesanMasuk={splitName === userSignin.name ? '0 5px 0 0px' : '0 0px 0 0'}
                                     datePesan={e.timeSend}
                                     clickCard={() => {
+                                        const getIdUser = e.idUser1 === userSignin._id ? e.idUser2 : e.idUser1
                                         clickUserForChatt(e.idRoom)
                                         setIdRoomEndtoend(e.idRoom)
                                         setDataRoomEndtoend(e)
-                                        setDataRoomChat(e._id)
+                                        setIdUpdateRoomChat(e._id)
+                                        setDataRoomChat({})
                                         getDataUserForNotif(e.idUser1 === userSignin._id ? e.idUser2 : e.idUser1)
                                         setIdUserInRoomChat(e.idUser1 === userSignin._id ? e.idUser2 : e.idUser1)
                                         getDataNotif(e, id);
-                                        clickCardUser(i, filterRoomChattingUser.length);
+                                        clickCardUser(i, filterRoomChattingUser.length, getIdUser);
                                     }}
                                 />
                             )
@@ -645,10 +712,13 @@ const Home = () => {
                         await setIsSubmitSendMessage(true);
                     }}
                     goUserToChat={(id, data, idUser)=>{
-                        setDataRoomChat(data._id)
+                        const getIdUser = data.idUser1 === userSignin._id ? data.idUser2 : data.idUser1
+                        clickCardUser('undefined', filterRoomChattingUser.length, getIdUser)
+                        setIdUpdateRoomChat(data._id)
                         getDataNotif(data, idUser)
                         clickUserForChatt(id)
                         setIdRoomEndtoend(id)
+                        setDataRoomChat({})
                         setDataRoomEndtoend(data)
                         getDataUserForNotif(data.idUser1 === userSignin._id ? data.idUser2 : data.idUser1)
                         setIdUserInRoomChat(data.idUser1 === userSignin._id ? data.idUser2 : data.idUser1)

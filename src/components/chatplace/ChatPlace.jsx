@@ -1,29 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
 import API from '../../services'
 import { NotifikasiContext } from '../../services/context/notifikasi/notifikasi'
+import { ResultSearchUserContext } from '../../services/context/resultsearchuser/ResultSearchUser'
 import Chat from '../chat/Chat'
 import './ChatPlace.scss'
 
 const ChatPlace = ({ displayChat, background, imgProfile, clickImg, nameProfile, totalMemberNav, submitSend, value, changeTextChat, displayJoin, clickJoin, dataGroup, dataUser, dataPenerima, clickBarProfile, clickImgProfile, nameReply, pesanReply, dataReply, closeReply }) => {
 
+    const [valueSearchHome, setValueSearchHome, roomChatUser, setRoomChatUser, userLogin, setUserLogin, filterSearch, filterMessage, semuaAPI, toShowMessageReply, conditionShowMessage, setConditionShowMessage] = useContext(ResultSearchUserContext)
     const [showReply, setShowReply] = useState(false)
 
     const userId = JSON.parse(localStorage.getItem('userId'))
     const id = userId && userId._id
 
     const [amountNotif, setAmountNotif, getDataNotif] = useContext(NotifikasiContext)
-
-    function toShowMessageReply(_id) {
-        const columnIsiChat = document.getElementById(_id)
-
-        if (columnIsiChat) {
-            columnIsiChat.style.backgroundColor = '#37afe283'
-
-            setTimeout(() => {
-                columnIsiChat.style.backgroundColor = 'transparent'
-            }, 500);
-        }
-    }
 
     return (
         <>

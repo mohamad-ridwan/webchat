@@ -3,11 +3,15 @@ import { connect } from 'react-redux'
 import API from '../../services'
 import { DataRoomChatContext } from '../../services/context/dataroomchat/DataRoomChat'
 import { NotifikasiContext } from '../../services/context/notifikasi/notifikasi'
+import { ResultSearchUserContext } from '../../services/context/resultsearchuser/ResultSearchUser'
+import { StatusContext } from '../../services/context/status/status'
 import CardMember from '../cardmember/CardMember'
 import './ModalUserSignin.scss'
 
 const ModalUserSignin = ({ data, displayModal, clickClose, dataUserSignin, clickSend, showModalProfile, goUserToChat }) => {
 
+    const [valueSearchHome, setValueSearchHome, roomChatUser, setRoomChatUser, userLogin, setUserLogin, filterSearch, filterMessage, semuaAPI, toShowMessageReply, conditionShowMessage, setConditionShowMessage, changeBgResultSearch] = useContext(ResultSearchUserContext)
+    const [dataStatus, setDataStatus, dataRoom, setDataRoom, statusUserSignin, setStatusUserSignin, allDataStatus, setAllDataStatus, updatingStatus] = useContext(StatusContext)
     const [dataRoomChat, setDataRoomChat, dataProfileUserChat, setDataProfileUserChat, clickCardUser] = useContext(DataRoomChatContext)
     const [amountNotif, setAmountNotif, getDataNotif, dataUserForNotif, setDataUserForNotif, getDataUserForNotif] = useContext(NotifikasiContext)
     const [displayStartPesan, setDisplayStartPesan] = useState(false)
@@ -50,7 +54,13 @@ const ModalUserSignin = ({ data, displayModal, clickClose, dataUserSignin, click
         _idReply: ' ',
         idUserReply: ' ',
         reply: ' ',
-        nameReply: ' '
+        nameReply: ' ',
+        idUser1: idUser,
+        idUser2: dataUser && dataUser._id,
+        nameUser1: name,
+        nameUser2: dataUser && dataUser.name,
+        imageUrlUser1: imageUrl,
+        imageUrlUser2: dataUser && dataUser.imageUrl,
     }
 
     const dataNotif = {
@@ -67,15 +77,18 @@ const ModalUserSignin = ({ data, displayModal, clickClose, dataUserSignin, click
                 .then(res => {
                     setDataRoomChat(res)
                 })
+
             // For chatting end to end
             API.APIPostEndtoend(dataSendMessage)
                 .then(res => {
+                    semuaAPI();
                     setValueMessage('')
                     setDataProfileUserChat(res)
                     setTimeout(() => {
                         setAllAPI().then((index) => {
-                            clickCardUser(index = index - 1, index)
+                            clickCardUser('undefined', index, dataUser.name)
                         })
+                        updatingStatus(idUser)
                     }, 100);
                     setTimeout(() => {
                         setDisplayStartPesan(false)
@@ -142,7 +155,7 @@ const ModalUserSignin = ({ data, displayModal, clickClose, dataUserSignin, click
                                 search
                             </span>
                             <input type="text" className="search-userSignin"
-                                placeholder={'Cari seseorang...'} autoFocus
+                                placeholder={'Cari seseorang'} autoFocus
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                             />

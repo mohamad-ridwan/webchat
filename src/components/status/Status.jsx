@@ -8,12 +8,10 @@ import { StatusContext } from '../../services/context/status/status'
 
 const Status = ({ clickClose, wrappDisplay, dataUserSignin }) => {
 
-    const [dataStatus, setDataStatus, dataRoom, setDataRoom] = useContext(StatusContext)
+    const [dataStatus, setDataStatus, dataRoom, setDataRoom, statusUserSignin, setStatusUserSignin, allDataStatus, setAllDataStatus, updatingStatus] = useContext(StatusContext)
     const [modalType, setModalType] = useState(false)
     const [showCarousel, setShowCarousel] = useState(false)
     const [textValue, setTextValue] = useState('')
-    const [statusUserSignin, setStatusUserSignin] = useState([])
-    const [allDataStatus, setAllDataStatus] = useState([])
     const [index, setIndex] = useState()
     const [bgColor, setBgColor] = useState('burlywood')
 
@@ -21,59 +19,6 @@ const Status = ({ clickClose, wrappDisplay, dataUserSignin }) => {
     const id = userId && userId._id
 
     const color = ['burlywood', 'brown', 'darkblue', 'grey', 'darkviolet', 'darksalmon', 'indigo', 'purple']
-
-    let promise = Promise.resolve()
-
-    function setAllAPI() {
-        API.APIGetStatus()
-            .then(res => {
-                const result = res.data
-                if (result) {
-                    // For status user signin
-                    const filter = result.filter((e) => e.idUser === id)
-                    setStatusUserSignin(filter)
-                    const filterNonUserSignin = result.filter((e) => e.idUser !== id)
-
-                    // Remove Unique Id
-                    const uniqueId = filterNonUserSignin.filter((data, index) => {
-                        const idUser = JSON.stringify(data.idUser);
-                        return index === filterNonUserSignin.findIndex(obj => {
-                            return JSON.stringify(obj.idUser) === idUser;
-                        })
-                    })
-
-                    let newData = []
-                    API.APIGetChattingUser()
-                        .then(res => {
-                            const respons = res.data
-                            const filterToDataStatus = respons.filter(e => e.idUser1 === id || e.idUser2 === id)
-
-                            if (filterToDataStatus.length > 0) {
-                                for (let p = 0; p < filterToDataStatus.length; p++) {
-                                    promise = promise.then(() => {
-                                        return new Promise((resolve, reject) => {
-                                            setTimeout(() => {
-                                                const index = filterToDataStatus[p].idUser1 === id ? filterToDataStatus[p].idUser2 : filterToDataStatus[p].idUser1
-
-                                                const filterUniqueId = uniqueId.filter((e) => e.idUser === index)
-                                                setTimeout(() => {
-                                                    if (filterUniqueId.length === 1) {
-                                                        newData.push(filterUniqueId[0])
-                                                        setAllDataStatus(newData)
-                                                    }
-                                                }, 20);
-                                                setTimeout(() => {
-                                                    resolve();
-                                                }, 100);
-                                            }, 0);
-                                        })
-                                    })
-                                }
-                            }
-                        })
-                }
-            })
-    }
 
     function clickStatusUser(id) {
         API.APIGetStatus()
@@ -112,7 +57,7 @@ const Status = ({ clickClose, wrappDisplay, dataUserSignin }) => {
                 .then(res => {
                     const result = res.data
                     if (result) {
-                        setAllAPI();
+                        updatingStatus(id)
                         setTimeout(() => {
                             setModalType(false)
                             setTextValue('')
@@ -146,7 +91,7 @@ const Status = ({ clickClose, wrappDisplay, dataUserSignin }) => {
     // }, 100);
 
     useEffect(() => {
-        setAllAPI();
+        updatingStatus(id)
     }, [])
 
     return (
@@ -202,7 +147,7 @@ const Status = ({ clickClose, wrappDisplay, dataUserSignin }) => {
                     <div className="nav-update-status">
                         <div className="column-btn-update-status">
                             <p className="txt-update-status">
-                                Update status
+                                Update status Anda
                             </p>
                             <span class="material-icons btn-update-status-txt"
                                 onClick={() => {
@@ -247,24 +192,28 @@ const Status = ({ clickClose, wrappDisplay, dataUserSignin }) => {
                             {allDataStatus && allDataStatus.length > 0 ?
                                 allDataStatus.map((e, i) => {
                                     return (
-                                        <CardUser
-                                            key={i}
-                                            img={`${e.imageUrl}`}
-                                            nameCard={e.name}
-                                            wrapBgColor={'transparent'}
-                                            colorName={'#fff'}
-                                            colorDate={'#777'}
-                                            pesanMasuk={`hari ini pukul ${e.time}`}
-                                            wrappPadding={'0'}
-                                            fontPesanMasuk={'9pt'}
-                                            marginNamePesanMasuk={'0'}
-                                            borderImg={allDataStatus.length > 0 ? '2.5px solid #37afe2' : 'none'}
-                                            clickCard={async () => {
-                                                clickStatusUser(e.idUser)
-                                                setIndex(0)
-                                                await setShowCarousel(true)
-                                            }}
-                                        />
+                                        <>
+                                            <div className="container-card-status-user" key={i}>
+                                                <CardUser
+                                                    key={i}
+                                                    img={`${e.imageUrl}`}
+                                                    nameCard={e.name}
+                                                    wrapBgColor={'transparent'}
+                                                    colorName={'#fff'}
+                                                    colorDate={'#777'}
+                                                    pesanMasuk={`hari ini pukul ${e.time}`}
+                                                    wrappPadding={'0'}
+                                                    fontPesanMasuk={'9pt'}
+                                                    marginNamePesanMasuk={'0'}
+                                                    borderImg={allDataStatus.length > 0 ? '2.5px solid #37afe2' : 'none'}
+                                                    clickCard={async () => {
+                                                        clickStatusUser(e.idUser)
+                                                        setIndex(0)
+                                                        await setShowCarousel(true)
+                                                    }}
+                                                />
+                                            </div>
+                                        </>
                                     )
                                 }) : (
                                     <div></div>

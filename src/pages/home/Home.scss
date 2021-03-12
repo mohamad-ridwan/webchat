@@ -17,7 +17,7 @@
 
         .nav-profile{
             display: flex;
-            height: 60px;
+            height: 55px;
             width: 100%;
             padding: 0px 20px;
             align-items: center;
@@ -79,6 +79,7 @@
             align-items: center;
             cursor: pointer;
             background-color: $colorLima;
+            border-bottom: 1px solid #fff;
 
             .img-place-user-signin{
                 display: flex;
